@@ -49,8 +49,10 @@
 
     // reset column Y
     this.colYs = [];
+    this.colItems = [];
     for ( var i=0; i < this.cols; i++ ) {
       this.colYs.push( 0 );
+      this.colItems.push([]);
     }
 
     this.maxY = 0;
@@ -104,6 +106,11 @@
     // get the minimum Y value from the columns
     var minimumY = Math.min.apply( Math, colGroup );
     var shortColIndex = colGroup.indexOf( minimumY );
+
+    // 记录每一列的元素
+    if (shortColIndex < this.colItems.length) {
+      this.colItems[shortColIndex].push(item);
+    }
 
     // position the brick
     var position = {
